@@ -1,0 +1,16 @@
+<%- include("../partials/logout_button") %> 
+
+<div id="mainContainer" class="flex-column">
+    <h1>Translation Admin Page</h1>
+    <a href="/admin/setup" class="anchorButton">Create New Property</a>
+    <% if(typeof list != "undefined"){ %>
+        <div>
+        <% list.forEach(item=>{ %>
+            <div>
+                <h3><%= item.hotelName %></h3>
+                <a href="<%= `../ajax/site/${item.id}` %>">Update</a>
+            </div>
+        <% }) %>
+        </div>
+    <% } %> 
+</div>

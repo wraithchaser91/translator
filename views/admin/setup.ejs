@@ -1,0 +1,105 @@
+<%- include("../partials/logout_button") %>
+<div class="flex-column" id="mainContainer">
+    <h1>New Property Setup</h1>
+    <form action="/admin/setup" method="POST" id="setupForm">
+        <div class="flex-row">
+            <div class="flex-column">
+                <label for="hotelName" class="formLabel">Hotel Name</label>
+                <input type="text" name="hotelName" class="formInput" required>
+            </div>
+            <div class="flex-column">
+                <label for="url" class="formLabel">Full Site URL</label>
+                <input type="text" name="url" class="formInput" id="url" required>
+            </div>
+        </div>
+        <p>Page names should include the route from the main url only<br>do not include the preceding /</p>
+        <div class="flex-row" id="pageListRow">
+            <div class="flex-column">
+                <label for="pageInput" class="formLabel">New Page</label>
+                <input type="text" name=pageInput class="formInput" id="pageInput">
+            </div>
+            <div class="flex-column">
+                <div id="pageListContainer">
+                </div>
+            </div>
+        </div>
+        <div class="flex-row">
+            <div class="flex-column">
+                <label for="username" class="formLabel">User Name</label>
+                <input type="text" name=username class="formInput" required>
+            </div>
+            <div class="flex-column">
+                <label for="password" class="formLabel">Temp Password</label>
+                <input type="text" name=password class="formInput" required>
+            </div>
+        </div>
+        <div class="flex-column"><button type="submit" id="saveButton">Save</button></div>
+    </form>
+    <% if(typeof message != "undefined"){%>
+        <h3 class="error"><%= message %></h3>
+    <% } %>  
+</div>
+
+<script>
+    let form = document.getElementById("setupForm");
+    form.addEventListener("keydown", (e)=>{
+       if(e.code == "Enter") e.preventDefault();
+    });
+
+    let pageInput = document.getElementById("pageInput");
+    pageInput.addEventListener("keydown", (e)=>{
+        if(e.code === "Enter"){
+            addPage(pageInput.value);
+            pageInput.value = "";
+        }
+    });
+
+    let pageContainer = document.getElementById("pageListContainer");
+    let pageList = [];
+    addPage = string =>{
+        let heading = document.createElement("h3");
+        heading.textContent = string;
+        heading.className = "pageName";
+        heading.addEventListener("click", ()=>{
+            pageContainer.removeChild(heading);
+            pageList = pageList.filter(item => item != string);
+        });
+        pageContainer.appendChild(heading);
+        pageList.push(string);
+    }
+
+    createList = () =>{
+        let main = document.getElementById("url").value;
+        let list = [main];
+        for(let item of pageList){
+            list.push(`${main}${item.toLowerCase()}`);
+        }
+        return list;
+    }
+
+    document.getElementById("saveButton").addEventListener("click", (e)=>{
+        if(form.checkValidity())startSave();
+    });
+
+    startSave = () =>{
+        let list = createList();
+        let i1 = document.createElement("input");
+        i1.value = JSON.stringify(list);
+        i1.name = "pageList";
+        i1.style.display = "none";
+        form.appendChild(i1);
+        form.submit();
+    }
+</script>
+
+<script src="/js/formField.js"></script>
+<script>
+    let values = ["Tafaria Castle", "https://www.tafaria.com/","","Tafaria", "Tafaria"];
+    for(let i = 0; i < fieldHandler.list.length; i++){
+        fieldHandler.list[i].input.value = values[i];
+    }
+    let pages = ["Accoma", "Test", "Home"];
+    for(let page of pages){
+        addPage(page);
+    }
+</script>

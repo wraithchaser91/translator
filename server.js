@@ -16,6 +16,21 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({limit: "10mb", extended: false}));
 app.use(bodyParser.json());
 
+//init passport
+const passport = require("passport");
+const initPassport = require("./passport-config.js");
+initPassport(passport);
+const flash = require("express-flash");
+const session = require("express-session");
+app.use(flash());
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 const mongoose = require("mongoose");
 mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser:true, useUnifiedTopology:true});
 const db = mongoose.connection;
@@ -23,19 +38,12 @@ db.on("error", error=>console.log(error));
 db.on("open", ()=>console.log("Connected to mongoose"));
 
 const indexRouter = require("./routes/index");
+const dashboardRouter = require("./routes/dashboard");
+const adminRouter = require("./routes/admin");
+const ajaxRouter = require("./routes/ajax");
 app.use("/", indexRouter);
+app.use("/dashboard", dashboardRouter);
+app.use("/admin", adminRouter);
+app.use("/ajax", ajaxRouter);
 
 app.listen(process.env.PORT || 3000);
-
-
-/* 
- * Steps to create a new project
-
- -Change name in package/package-lock.json
- -Create database with Atlas Clusters (choose driver when prompted)
- -Allow access from anywhere (IP whitelist) *Optional*
- -Connect to correct database in .env file
- -Link computer with GitHub https://www.youtube.com/watch?v=HfTXHrWMGVY (new machines only)
- -Create a new GitHub repository/Heroku project https://www.youtube.com/watch?v=qj2oDkvc4dQ
- -Configure congif-vars in heroku correctly, Settings->Config Vars (should mirror what you have in .env)
-*/

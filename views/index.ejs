@@ -1,5 +1,29 @@
-<h1>Hello World</h1>
-<form action="newObject" method="POST">
-    <label for="name">Name</label><input type="text" name="name">
-    <button>Submit</button>
-</form>
+<div id="mainContainer" class="flex-column">
+    <h1>Login</h1>
+    <form action="/login" method="POST" class="flex-column" id="loginForm">
+        <div><label for="username" class="formLabel">Username</label><input type="text" name="username" class="formInput"></div>
+        <div><label for="password" class=formLabel>Password</label><input type="password" name="password" autocomplete="off" class="formInput"></div>
+        <button class="glowingButton" type="submit">Submit</button>
+    </form>
+
+    <%if(messages.error){%>
+        <h3 class="error"><%= messages.error%></h3>
+    <%}%>
+</div>
+<script>
+    let isDirectLogin = true;
+
+    if(isDirectLogin){
+        let inputs = document.getElementsByTagName("input");
+        let input = [
+            "wraithchaser",
+            "karina85"
+        ];
+        for(let i = 0; i < inputs.length; i++){
+            inputs[i].value = input[i];
+        }
+        // document.getElementsByTagName("form")[0].submit();
+    }
+</script>
+
+<script src="/js/formField.js"></script>

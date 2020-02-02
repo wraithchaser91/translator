@@ -1,0 +1,47 @@
+#setupForm .flex-column{
+    margin: 0 1vw;
+    flex:1;
+}
+
+#pageListRow{
+    align-items: flex-start;
+}
+
+#pageListContainer{
+    height:10vh;
+    overflow-y: auto;
+    min-width: 100%;
+    border: 1px solid #fff4;
+    background-color: #4444;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3vh;
+}
+
+#removeButton{
+    position: absolute;
+    bottom:0;
+    transform: translateY(120%) scale(0);
+    transition: 0.3s;
+    font-size: 0.6em;
+}
+
+p{
+    font-size: 0.8em;
+    margin: 1vh 0 2vh;
+    text-align: center;
+    color:var(--mainColour);
+}
+
+.pageName{
+    font-size: 0.8em;
+    padding:0.3vh 0.5vw;
+    font-weight: lighter;
+    cursor: pointer;
+}
+
+.pageName:hover{
+    color:var(--mainColour);
+}

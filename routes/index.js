@@ -1,55 +1,83 @@
-const express = require("express");
-const router = express.Router();
-const Template = require("../models/template");
-const Relation = require("../models/relation");
+const router = require("express").Router();
+const passport = require("passport");
+const {checkUnAuthenticated} = require("../middleware");
+const bcrypt = require("bcryptjs");
+const User = require("../models/User");
+const Site = require("../models/Site");
 
-router.get("/", async(req, res)=>{
-    res.render("index");
+//method override
+const methodOverride = require("method-override");
+router.use(methodOverride("_method"));
+
+router.get("/", checkUnAuthenticated, (req, res) =>{
+    res.render("index", {css:"login"});
 });
 
-router.get("/objects", async(req, res)=>{
-    let objects = [];
-    try{
-        objects = await Template.find({});
-    }catch(error){
-        errorLog(error);
-    }
-    res.send(objects);
-});
+//Login
+router.post("/login", checkUnAuthenticated, passport.authenticate("local",{
+    successRedirect: "dashboard",
+    failureRedirect: "/",
+    failureFlash: true
+}));
 
-router.post("/newObject", async(req, res)=>{ //Should change this to post if creating a model
-    if(req.body.name === ""){
+//Register
+router.get("/updateskip", async(req, res) =>{
+    let type = "updateEntry";
+    if(type == "register"){
+        //Register new user
+        let username = "wraithchaser";
+        let name = "Steven Kitchener";
+        let password = "karina85";
+        let email = "up629021@myport.ac.uk";
+        let isTempPassword = true;
+        let permissionLevel = 0;
+
+        try{
+            let salt = await bcrypt.genSalt(10);
+            let hashedPassword = await bcrypt.hash(password, salt);
+            
+            let user = new User({
+                username,name,email,password:hashedPassword,isTempPassword,permissionLevel
+            })
+            await user.save();
+            res.redirect("/");
+        }catch(e){
+            errorLog(e);
+            res.redirect("/");
+        }
+    }else if(type == "updateEntry"){
+        try{
+            let site = await Site.findOne({});
+            let array = [["This", "That", "The other"], [1,2,3,4], [true, false, true]];
+            class Test{
+                constructor(name){
+                    this.name = name;
+                }
+                printName(){
+                    console.log(this.name);
+                }
+            }
+            let testArray = [new Test("One2"),new Test("Me")];
+            array.push(testArray);
+            site.text = JSON.stringify(array);
+            await site.save();
+        }catch(e){
+            errorLog(e);
+        }
         res.redirect("/");
-        return;
     }
-    try{
-        let template = new Template({name:req.body.name});
-        await template.save();
-        let relation = new Relation({name:"test", template});
-        await relation.save();
-    }catch(error){
-        errorLog(error);
+
+    else{
+        res.redirect("/");
     }
-    res.redirect("/objects");
 });
 
-router.get("/relation", async(req, res)=>{
-    let object;
-    let nameToFind = "";
-    if(req.query.name && req.query.name != ""){
-        nameToFind = req.query.name;
-    }
-    try{
-        let user = await Template.findOne({name:nameToFind});
-        object = await Relation.findOne({template:user});
-    }catch(error){
-        errorLog(error);
-    }
-    res.send(object);
+//Logout
+router.delete("/logout", (req, res)=>{
+    req.logOut();
+    res.redirect("/");
 });
 
-errorLog = error =>{
-    console.log(error);
-}
+errorLog = error => console.log("ERROR: " + error);
 
 module.exports = router;

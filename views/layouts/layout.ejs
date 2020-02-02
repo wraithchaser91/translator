@@ -3,10 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="/images/temp.png"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css">
+    <% if(typeof css != "undefined"){ %>
+        <link rel="stylesheet" href="<%= `/css/${css}.css` %>">
+    <% } %>  
 </head>
 <body>
     <%- body %>
+    <script>
+        setTimeout(()=>{
+            let errors = document.getElementsByClassName("error");
+            for(let error of errors){
+                error.style.transform = "scale(0)";
+            }
+        }, 2000)
+    </script>
 </body>
 </html>
