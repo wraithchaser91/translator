@@ -1,6 +1,13 @@
 const router = require("express").Router();
+const cors = require("cors")
 const Site = require("../models/Site");
 
+let corsOptions = {
+    origin: 'https://sbk-translator.herokuapp.com/',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+router.use(cors(corsOptions));
 
 router.get("/", (req, res) =>{
     let obj = {
