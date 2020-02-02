@@ -3,7 +3,7 @@ const cors = require("cors")
 const Site = require("../models/Site");
 
 let corsOptions = {
-    origin: 'https://sbk-translator.herokuapp.com/',
+    origin: true,
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
