@@ -24,7 +24,14 @@ body{
     flex-direction: column;
     align-items: center;
     color:white;
+    overflow-x: hidden;
     font-family: 'Raleway', sans-serif;
+}
+
+.subHeading{
+    font-weight: lighter;
+    font-size: 1em;
+    margin:2vh 0 0.5vh;
 }
 
 button, .anchorButton{
@@ -38,6 +45,16 @@ button, .anchorButton{
     color: #000;
     font-size: 0.8em;
     position: relative;
+}
+
+.reverseAnchor{
+    filter: hue-rotate(180deg);
+    font-size: 0.7em;
+    padding:5px 20px;
+}
+
+.reverseAnchor:hover{
+    color:white;
 }
 
 .anchorButton{
@@ -105,17 +122,26 @@ form input:focus, form select:focus{
     outline:none;
 }
 
+form button{
+    min-width:15vw;
+}
+
 .error{
     transition: 0.3s;
     color:red;
     font-size: 0.8em;
-    font-weight:lighter;
+    font-weight: lighter;
 }
 
 #logoutForm{
     position: fixed;
     top:1%;
     right:1%;
+    z-index: 99;
+}
+
+#logoutForm button{
+    min-width: 10vw;
 }
 
 #mainContainer{
@@ -142,4 +168,110 @@ form input:focus, form select:focus{
 ::-webkit-scrollbar-thumb{
     background-image: linear-gradient(105deg, #ff5858 0%, #f09819 100%);
     border-radius:5px;
+}
+
+#propertyColumn{
+    margin: 1vh 0.5vw;
+    border-radius: 10px;
+    background-color: #8881;
+    padding: 2vh 1.5vw;
+}
+
+#propertyColumn h3{
+    margin-bottom:1.5vh;
+    font-weight: lighter;
+}
+
+#propertyColumn a{
+    margin:0 0.3vw;
+}
+
+#setupForm .flex-column{
+    margin: 0 1vw;
+    flex:1;
+}
+
+.listInputRow{
+    align-items: flex-start;
+}
+
+.listContainer{
+    height:10vh;
+    overflow-y: auto;
+    min-width: 100%;
+    border: 1px solid #fff4;
+    background-color: #4444;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3vh;
+}
+
+#removeButton{
+    position: absolute;
+    bottom:0;
+    transform: translateY(120%) scale(0);
+    transition: 0.3s;
+    font-size: 0.6em;
+}
+
+p, .langName{
+    font-size: 0.8em;
+    margin: 1vh 0 2vh;
+    text-align: center;
+    color:var(--mainColour);
+}
+
+.langName{
+    margin:0 1vw;
+    font-weight: lighter;
+}
+
+.pageName{
+    font-size: 0.8em;
+    padding:0.3vh 0.5vw;
+    font-weight: lighter;
+    cursor: pointer;
+}
+
+.pageName:hover{
+    color:var(--mainColour);
+}
+
+#introRow .flex-column:nth-child(1){
+    flex:2;
+}
+
+#introRow .flex-column:nth-child(2){
+    flex:3;
+}
+
+#columnContainer{
+    align-items: flex-start;
+}
+
+#langDiv{
+    margin:-3vh 0 3vh;
+}
+
+.stringContainer{
+    max-width:40%;
+    text-align: left;
+    align-items: flex-start;
+    margin:0 5%;
+}
+
+.transString{
+    max-width: 55%;
+    margin-bottom:0.8vh;
+    cursor: pointer;
+}
+
+.transString:nth-child(odd){
+    color:#ccc;
+}
+
+.transString:hover{
+    color:var(--mainColour);
 }

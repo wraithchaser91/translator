@@ -1,0 +1,75 @@
+<div class="flex-column" id="mainContainer">
+    <h1>Content from the scraped site</h1>
+    <% if(langs.length > 0) {%>
+        <div class="flex-column" id="langDiv">
+            <h4>Languages to be translated in to</h4>
+            <% let string = "" %>
+            <% for(let i = 0; i < langs.length; i++){ %>
+                <% string+=`${langs[i]}${i!=langs.length-1?", ":""}` %>
+            <%}%>
+            <h5 id="langString"><%= string %></h5>
+        </div>
+    <%}%>
+    <% if(typeof strings != "undefined") {%>
+        <div class="flex-column">
+            <% strings.forEach(item => { %>
+                <h5 class="transString"><%= item %></h5>
+            <%})%>
+        </div>
+    <%}%>
+</div>
+
+<button id="copyToClip">Copy to clipboard</button>
+
+<script>
+
+document.getElementById("copyToClip").addEventListener("click", ()=>createHTML());
+    
+createHTML = () =>{
+    let stringArray = document.getElementById("langString").textContent.replace(/ /g, "").split(",");
+    let strings = document.getElementsByClassName("transString");
+
+    let html = `English\t`;
+    for(let i = 0; i < stringArray.length; i++){
+        html+=stringArray[i];
+        if(i < stringArray.length-1)html+="\t";
+    }
+    for(let string of strings){
+        html+=`\n${string.textContent}`;
+    }
+    const el = document.createElement('textarea');
+    el.value = html;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+}
+
+
+let isClicked = false;
+let target;
+
+let stringList = document.getElementsByClassName("transString");
+for(let string of stringList){
+    string.addEventListener("click", ()=>{
+        console.log(isClicked, target);
+        if(!isClicked){
+            isClicked = true;
+            target = string;
+        }else{
+            if(target == string){
+                isClicked = false;
+                target == null;
+                string.parentNode.removeChild(string);
+            }
+        }
+    });
+}
+
+unClick = () =>{
+    if(isClicked)isClicked = false;
+    setTimeout(()=>unClick(),500);
+}
+
+unClick();
+</script>

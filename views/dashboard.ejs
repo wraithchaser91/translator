@@ -1,1 +1,12 @@
 <%- include("./partials/logout_button") %>
+<div class="flex-column" id="mainContainer">
+    <h1>New Property Setup</h1>
+    <form action="/dashboard/scrape" method="POST" id="setupForm" autocomplete="off">
+        <%- include("./partials/setupFields") %> 
+        <div class="flex-column"><button type="submit" id="saveButton">Find Strings</button></div>
+    </form>
+</div>
+
+<script src="/js/lists.js"></script>
+<script src="/js/saveForm.js"></script>
+<script src="/js/formField.js"></script>

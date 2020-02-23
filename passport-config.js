@@ -49,7 +49,7 @@ getUserById = async id =>{
         const user =  await User.findById(id);
         return user;
     }catch{
-        console.log("Failed to find user by name");
+        console.log("Failed to find user by id");
         return null;
     }
 }

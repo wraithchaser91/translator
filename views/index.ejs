@@ -11,7 +11,7 @@
     <%}%>
 </div>
 <script>
-    let isDirectLogin = true;
+    let isDirectLogin = false;
 
     if(isDirectLogin){
         let inputs = document.getElementsByTagName("input");
@@ -22,7 +22,7 @@
         for(let i = 0; i < inputs.length; i++){
             inputs[i].value = input[i];
         }
-        // document.getElementsByTagName("form")[0].submit();
+        document.getElementsByTagName("form")[0].submit();
     }
 </script>
 

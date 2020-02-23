@@ -39,11 +39,7 @@ db.on("open", ()=>console.log("Connected to mongoose"));
 
 const indexRouter = require("./routes/index");
 const dashboardRouter = require("./routes/dashboard");
-const adminRouter = require("./routes/admin");
-const ajaxRouter = require("./routes/ajax");
 app.use("/", indexRouter);
 app.use("/dashboard", dashboardRouter);
-app.use("/admin", adminRouter);
-app.use("/ajax", ajaxRouter);
 
 app.listen(process.env.PORT || 3000);

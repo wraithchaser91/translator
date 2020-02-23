@@ -3,7 +3,7 @@ const passport = require("passport");
 const {checkUnAuthenticated} = require("../middleware");
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
-const Site = require("../models/Site");
+const getResults = require("../scraper");
 
 //method override
 const methodOverride = require("method-override");
@@ -15,20 +15,20 @@ router.get("/", checkUnAuthenticated, (req, res) =>{
 
 //Login
 router.post("/login", checkUnAuthenticated, passport.authenticate("local",{
-    successRedirect: "dashboard",
+    successRedirect: "/dashboard",
     failureRedirect: "/",
     failureFlash: true
 }));
 
 //Register
 router.get("/updateskip", async(req, res) =>{
-    let type = "updateEntry";
+    let type = "";
     if(type == "register"){
         //Register new user
-        let username = "wraithchaser";
-        let name = "Steven Kitchener";
-        let password = "karina85";
-        let email = "up629021@myport.ac.uk";
+        let username = "ollieD";
+        let name = "Oliver Duffin";
+        let password = "four";
+        let email = "o.duffin@travelbookgroup.com";
         let isTempPassword = true;
         let permissionLevel = 0;
 
@@ -48,18 +48,7 @@ router.get("/updateskip", async(req, res) =>{
     }else if(type == "updateEntry"){
         try{
             let site = await Site.findOne({});
-            let array = [["This", "That", "The other"], [1,2,3,4], [true, false, true]];
-            class Test{
-                constructor(name){
-                    this.name = name;
-                }
-                printName(){
-                    console.log(this.name);
-                }
-            }
-            let testArray = [new Test("One2"),new Test("Me")];
-            array.push(testArray);
-            site.text = JSON.stringify(array);
+            site.langList = ["German", "French"];
             await site.save();
         }catch(e){
             errorLog(e);
@@ -71,6 +60,18 @@ router.get("/updateskip", async(req, res) =>{
         res.redirect("/");
     }
 });
+
+router.get("/scraper", async(req, res) =>{
+    try{
+        let hotelName = "Test Site"
+        const site = await Site.findOne({hotelName});
+        const data = await getResults(site.pageList);
+        res.send(data);
+    }catch(e){
+        errorLog(e);
+        res.redirect("/");
+    }
+})
 
 //Logout
 router.delete("/logout", (req, res)=>{
