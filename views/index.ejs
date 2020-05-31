@@ -1,0 +1,25 @@
+<div class="flex-column" id="hero">
+    <h1>Express Server Testing site</h1>
+    <p>Before continuing with the project it is recommended that you run the test below</p>
+    <p>Try creating a new entry to ensure that everything is configured correctly,<br>if successful it will be added to the top of the list</p>
+    <div class="flex-column raisedDiv" id="testDiv">
+        <form action="/" method="POST">
+            <label for="name">Name</label>
+            <input type="text" name="name" required autofocus>
+            <button type="submit">Submit</button>
+        </form>
+        <div class="flex-column raisedDiv scrollable" id="testScroll">
+            <% if(typeof list != "undefined"){ %>
+                <% if(list.length > 0){ %>
+                    <% list.forEach(item=>{ %>
+                        <h3><%= item.name %></h3>
+                    <%})%>
+                <%}else{%>
+                    <h3 class="error">No items to show yet</h3>
+                <%}%>
+            <%}else{%>
+                <h3 class="error">No data being received from the server</h3>
+            <%}%>
+        </div>
+    </div>
+</div>

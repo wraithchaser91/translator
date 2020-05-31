@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Insert Title Here</title>
+    <link rel="shortcut icon" href="/img/siteicon.png" />
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/responsive/main.css">
+    <% if(typeof css != "undefined"){ %>
+        <% css.forEach(item => {%>
+            <link rel="stylesheet" type="text/css" href="<%= `/css/${item}.css` %>">
+            <link rel="stylesheet" type="text/css" href="<%= `/css/responsive/${item}.css` %>">
+        <%})%>
+    <%}%>
+</head>
+<body>
+    <script src="/js/utils.js"></script>
+    
+    <%- include("../partials/utils") %>
+    <%- include("../partials/header") %>
+    <%- body %>
+    <%- include("../partials/footer") %>
+
+    <script src="/js/public.js"></script>
+</body>
+</html>
