@@ -1,34 +1,7 @@
 <div class="flex-column" id="hero">
-    <h1>Express Server Login Testing site</h1>
-    <% if(typeof user == "undefined"){ %>
-        <p>Login servers are user to protect sensitive pages from non-users. This site has two pages, <br>but unless you are logged in you will be unable to view the "Staging" page</p>
-        <p>To finish this project setup please ensure that you have the following values in a new .env file</p>
-        <h3>DATABASE_URL=mongodb+srv://admin:TbhoCorKe19n3xVd@cluster0-9bwu0.mongodb.net/test?retryWrites=true&w=majority
-        <h3>SESSION_SECRET=hgoinsdfoi8fGRWG8s</h3>
-        <p>Before continuing with the project it is recommended that you run the test below</p>
-        <p>Try logging in with the following credentials, Admin:Password123<br>Or your own if you have already registered</p>
-        <form action="/auth/login" method="POST">
-            <label for="username">Username</label>
-            <input type="text" name="username" required autofocus>
-            <label for="password">Password</label>
-            <input type="password" name="password" required>
-            <button type="submit">Login</button>
-        </form>
-        <% if(message.error){ %>
-            <h3 class="error">Please enter valid credentials</h3>
-        <%}%>
-    <%}else{%>
-        <h2>Hello <%= user.username %></h2>
-        <p>You can now manually go to the next page as you are now a 'member'</p>
-        <p>Now that you have logged in you can create new users if you wish<br>
-            Or, if not, press the skip button to go the next page</p>
-        <form action="/newuser" method="POST">
-            <label for="username">Username</label>
-            <input type="text" name="username" required autofocus>
-            <label for="password">Password</label>
-            <input type="password" name="password" required>
-            <button type="submit">Register</button>
-        </form>
-        <a href="/staging">Skip</a>
-    <%}%>
+    <h1>The home members page</h1>
+    <h3>Everything is working perfectly</h3>
+    <p>You can now use this project with the knowledge that everything is configured correctly</p>
+    <p>~*~ You will need to change the values within the .env file ~*~</p>
+    <p>Finally you will also need to remember to push this project into the GitHub repo that you just made<br>to commit the relevant changes</p>
 </div>
