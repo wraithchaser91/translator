@@ -100,11 +100,13 @@ h2{
     font-size: 2em;
     font-family: "Libre Baskerville", serif;
     color: white;
+    margin-bottom:2vh;
 }
 
 h3{
-    font-size: 1em;
+    font-size: 1.2em;
     color: var(--mainColour);
+    margin-bottom:1vh;
 }
 
 h4{

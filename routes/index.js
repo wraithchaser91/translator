@@ -1,32 +1,34 @@
 const express = require("express");
 const router = express.Router();
-const Basic = require("../models/basic");
+const {errorLog, render} = require("../utils.js");
 const {cleanBody} = require("../middleware");
 const errors = require("../errors");
+const User = require("../models/user");
+const bcrypt = require("bcryptjs");
+const {checkAuthentication} = require("../middleware");
 
 router.get("/", async(req, res)=>{
-    let list;
-    try{
-        list = await Basic.find({});
-        list = list.reverse();
-    }catch(e){
-        console.log(e);
-        res.render("error", {error: errors.internalServerError});
-        return;
-    }
-    res.render("index", {list});
+    render(req,res,"index");
 });
 
-router.post("/", cleanBody, async(req,res)=>{
-    let basic = new Basic({
-        name: req.body.name
-    });
+router.post("/newuser", cleanBody, async(req,res)=>{
+    let user = new User({
+        username:req.body.username
+    })
     try{
-        await basic.save();
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(req.body.password, salt);
+        user.password = hashedPassword;
+        await user.save();
     }catch(e){
-        console.log(e);
+        if(errorLog(e,req,res,"Failed to create new user"))return;
     }
+    req.logOut();
     res.redirect("/");
+});
+
+router.get("/staging", checkAuthentication, (req,res)=>{
+    render(req,res,"staging");
 });
 
 module.exports = router;
