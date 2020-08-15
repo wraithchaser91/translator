@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville|Roboto|Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Roboto&display=swap');
 
 *, ::before, ::after{
     margin:0;
@@ -8,15 +8,18 @@
 }
 
 :root{
-    --mainColour: #1f9d56;
+    --backgroundColour: #000;
+    --backgroundGradient: #232323;
+    --mainColour: #fc9906;
     --secondaryColour: #11C6C6;
     --tertiaryColour: #dd08f7;
-    --errorColour: #f84;
+    --errorColour: red;
+    --successColour: rgb(74, 240, 74);
 }
 
 /* width */
 ::-webkit-scrollbar {
-    width: 0.3vw;
+    width: 0.5vw;
     cursor: pointer;
 }
 
@@ -28,7 +31,7 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background-image: linear-gradient(90deg, var(--mainColour) 0%, var(--secondaryColour) 100%);
+    background-image: linear-gradient(135deg, var(--mainColour) 0%, var(--secondaryColour) 100%);
     border-radius: 50px;
 }
 
@@ -38,38 +41,49 @@
 }
 
 body{
-    background-color: #000;
+    background-color: var(--backgroundColour);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     width: 100vw;
     font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
 }
 
-.flex-column{
+.col{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     position: relative;
 }
 
-.flex-row{
+.row{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
     position: relative;
 }
 
-#header{
+#mainContainer{
+    width:80%;
+    justify-content: center;
+}
+
+section{
+    margin: 2rem 0;
+}
+
+section * + *{
+    margin-top: 1rem;
+}
+
+header{
     justify-content: flex-end;
     padding:3vh 10vw 2vh;
     box-shadow: 0px 0px 15px 7px #232323;
-    background-image: linear-gradient(180deg, #000 0%, #232323 100%);
-    position: fixed;
+    background-image: linear-gradient(180deg, var(--backgroundColour) 0%, var(--backgroundGradient) 100%);
+    position: sticky;
     top:0;
     z-index: 99;
     width:100vw;
@@ -91,28 +105,21 @@ nav a:hover{
     color: var(--secondaryColour);
 }
 
-#hero{
-    margin:12vh 0 0vh;
-}
-
 h1{
-    font-size: 3em;
+    font-size: 2.5em;
     color:white;
-    font-family: "Libre Baskerville", serif;
-    margin-bottom:2.5vh;
+    font-family: 'Oswald', sans-serif;
 }
 
 h2{
-    font-size: 2em;
-    font-family: "Libre Baskerville", serif;
+    font-size: 1.7em;
+    font-family: 'Oswald', sans-serif;
     color: white;
-    margin-bottom:2vh;
 }
 
 h3{
     font-size: 1.2em;
     color: var(--mainColour);
-    margin-bottom:1vh;
 }
 
 h4{
@@ -126,15 +133,14 @@ h5{
 }
 
 p{
-    margin: 0 3vw 1vh;
     color: #c1c1c1;
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 a{
     text-decoration: none;
-    color: var(--mainColour);
+    color: var(--secondaryColour);
 }
 
 a:hover{
@@ -148,13 +154,14 @@ form{
     justify-content: center;
 }
 
+form * + *{
+    margin-top: 0;
+}
+
 form input, form select{
-    max-width: 150px;
     border-radius: 8px;
-    margin-bottom:1.5vh;
     padding:0.3vh 0.3vw;
-    text-align: center;
-    text-align-last: center;
+    margin:0.1rem 0.5rem 1rem;
 }
 
 form button{
@@ -165,7 +172,6 @@ form button{
     color:#232323;
     padding: 1vh 2vw;
     cursor:pointer;
-    margin-bottom: 2.5vh;
 }
 
 form button:hover{
@@ -175,13 +181,44 @@ form button:hover{
 
 form label{
     text-align: center;
-    margin-bottom:0.3vh;
     color:var(--mainColour);
-    font-family: "Roboto", sans-serif;
+}
+
+form input[type="file"]{
+    color:white;
+}
+
+.smallForm{
+    align-items: flex-start;
+}
+
+.smallForm button{
+    font-size: 0.8em;
+    padding:0.2rem 0.3rem;
+    background-color:#232323;
+    color:white;
+}
+
+.smallForm button:hover{
+    background-color: #232323;
+    color:var(--mainColour);
+}
+
+.smallForm input{
+    width:125px;
+}
+
+.smallForm label{
+    color:#ccc;
+    font-size: 0.8em;
+    padding-left: 0.2rem;
+}
+
+form .smallInput{
+    width:100px;
 }
 
 #backButton{
-    margin-top:1vh;
     color: var(--tertiaryColour);
 }
 
@@ -192,54 +229,29 @@ form label{
 .infoMessage{
     color:var(--tertiaryColour);
     font-size:1em;
-    margin:1vh 0;
     text-align: center;
     transition: 0.3s;
+    position: absolute;
+    top:9vh;
 }
 
 .errorCode{
-    margin-bottom:0vh;
     font-size:5em;
 }
 
 .error{
     color:var(--errorColour);
-    font-size: 0.8em;
-    margin-bottom: 1vh;
 }
 
-.raisedDiv{
-    padding:2%;
-    margin:1vh 1vw;
-    border-radius: 8px;
-    background: linear-gradient(145deg, #1c1d21aa, #17181c33);
-    box-shadow:  3px 3px 6px #101114, 
-                 -3px -3px 6px #24252a;
-    justify-content: flex-start;
-    scrollbar-color: var(--mainColour) var(--altBGColour);
-    scrollbar-width: thin;
-
+.success{
+    color:var(--successColour);
 }
 
-.scrollable{
-    max-height:30vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
-#testDiv{
-    width:25vw;
-}
-
-#testScroll{
-    width:80%;
-}
-
-#footer{
+footer{
     width:100vw;
     border-top:1px solid #12121288;
-    margin-top:3.5vh;
     padding:2vh 7vw;
+    justify-content: center;
 }
 
 #logoutForm button{

@@ -7,11 +7,9 @@
     <title>Insert Title Here</title>
     <link rel="shortcut icon" href="/img/siteicon.png" />
     <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/css/responsive/main.css">
     <% if(typeof css != "undefined"){ %>
         <% css.forEach(item => {%>
             <link rel="stylesheet" type="text/css" href="<%= `/css/${item}.css` %>">
-            <link rel="stylesheet" type="text/css" href="<%= `/css/responsive/${item}.css` %>">
         <%})%>
     <%}%>
 </head>
@@ -20,6 +18,16 @@
     
     <%- include("../partials/utils") %>
     <%- include("../partials/header") %>
+    <% if(message.error){ %>
+        <% message.error.forEach(item=>{%>
+            <p class="error infoMessage"><%= item %></p>
+        <%})%>
+    <%}%>
+    <% if(message.info){ %>
+        <% message.info.forEach(item=>{%>
+            <p class="infoMessage"><%= item %></p>
+        <%})%>
+    <%}%>
     <%- body %>
     <%- include("../partials/footer") %>
 

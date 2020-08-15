@@ -43,3 +43,8 @@ app.use("/", indexRouter);
 app.use("/auth", authRouter);
 
 app.listen(process.env.PORT || 3000);
+
+/*
+DATABASE_URL=mongodb+srv://admin:TbhoCorKe19n3xVd@cluster0-9bwu0.mongodb.net/test?retryWrites=true&w=majority
+SESSION_SECRET=hgoinsdfoi8fGRWG8s
+*/
