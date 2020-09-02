@@ -13,9 +13,7 @@
         <%})%>
     <%}%>
 </head>
-<body>
-    <script src="/js/utils.js"></script>
-    
+<body>    
     <%- include("../partials/utils") %>
     <%- include("../partials/header") %>
     <% if(message.error){ %>
@@ -28,7 +26,9 @@
             <p class="infoMessage"><%= item %></p>
         <%})%>
     <%}%>
-    <%- body %>
+    <main>
+        <%- body %>
+    </main>
     <%- include("../partials/footer") %>
 
     <script src="/js/public.js"></script>

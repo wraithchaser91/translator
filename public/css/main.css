@@ -31,8 +31,7 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background-image: linear-gradient(135deg, var(--mainColour) 0%, var(--secondaryColour) 100%);
-    border-radius: 50px;
+    background-image: #fff;
 }
 
 /* Handle on hover */
@@ -55,19 +54,21 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
 }
 
 .row{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    position: relative;
 }
 
-#mainContainer{
+main{
     width:80%;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+
 }
 
 section{
@@ -118,7 +119,7 @@ h2{
 }
 
 h3{
-    font-size: 1.2em;
+    font-size: 1.1em;
     color: var(--mainColour);
 }
 
@@ -248,10 +249,12 @@ form .smallInput{
 }
 
 footer{
+    display: flex;
     width:100vw;
-    border-top:1px solid #12121288;
-    padding:2vh 7vw;
+    border-top:1px solid #232323;
+    padding:1rem;
     justify-content: center;
+    margin-top: 3rem;
 }
 
 #logoutForm button{
