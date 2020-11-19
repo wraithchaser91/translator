@@ -1,0 +1,56 @@
+<section class="col module">
+    <h2 class="underline">Popups</h2>
+    <div class="row">
+        <section class="col fifty">
+            <h3>Information</h3>
+            <p>You will often find yourself in need of the use of a popup. This could be to get confirmation of a user interaction or to display additional information.</p>
+            <p>This Popup module's class creates its own element and an overlay, if one doesn't already exist. The overlay will have a click listener that stops the user clicking through to elements below it. If the overlay is clicked it will close the popup.</p>
+            <p>The Popup's element can be populated by any element that you have created, remember to bind any 'cancel' button that you create to the Popup's close function.</p>
+            <p>You can also create a generic popup box complete with optional heading, text, warning message and button text. When this is used you will have to pass in a function that will be run if the confirm button is pressed.</p>
+            <div class="col">
+                <button class="popupButton fullWidth">I'm a simple popup</button>
+                <button class="popupButton fullWidth">I have all the things</button>
+            </div>
+        </section>
+        <section class="col fifty">
+            <h3>How to use module</h3>
+            <section class="col">
+                <h4>JavaScript</h4>
+                <div class="raised codeCard">
+                    <h5>Creating a Popup</h5>
+<pre><code>
+import {Popup} from "./classes.js";
+
+let popup = new Popup();
+</code></pre>
+                    <button class="copyButton secondaryButton">Copy<i class="fas fa-copy"></i></button>
+                </div>
+                <div class="raised codeCard">
+                    <h5>Adding default content</h5>
+<pre><code>
+popup.createContent(data, function);
+</code><code class="parameters">
+data: JSON - (heading: String(optional)|text: String(optional)|
+              warning: String(optional)|buttonText: String(optional))
+function: ()=>{} - The function that will be run if the confirm button is pressed  
+</code></pre>
+                    <button class="copyButton secondaryButton">Copy<i class="fas fa-copy"></i></button>
+                </div>
+                <div class="raised codeCard">
+                    <h5>Opening the popup</h5>
+<pre><code>
+popup.open();
+</code></pre>
+                    <button class="copyButton secondaryButton">Copy<i class="fas fa-copy"></i></button>
+                </div>
+                <div class="raised codeCard">
+                    <h5>Closing the popup</h5>
+<pre><code>
+popup.close();
+</code></pre>
+                    <button class="copyButton secondaryButton">Copy<i class="fas fa-copy"></i></button>
+                </div>
+            </section>
+        </section>
+    </div>
+</section>

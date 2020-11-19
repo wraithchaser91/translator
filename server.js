@@ -37,6 +37,9 @@ const db = mongoose.connection;
 db.on("error", error=>console.log(error));
 db.on("open", ()=>console.log("Connected to mongoose"));
 
+const {cleanBody} = require("./middleware");
+app.use(cleanBody);
+
 const indexRouter = require("./routes/index");
 const authRouter = require("./routes/auth");
 app.use("/", indexRouter);

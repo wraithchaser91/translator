@@ -1,0 +1,92 @@
+/***********************Start Server Message CSS***********************/
+#clientMessages{
+    background-image: linear-gradient(40deg, var(--gradientMin) 0%, var(--gradientMax) 100%);
+    padding:1rem;
+    width:200px;
+    position:absolute;
+    top:1rem;
+    left:1rem;
+    transform:translateX(-150%);
+    transition:transform 0.5s;
+}
+
+#messageContainer{
+    max-height: 15vh;
+    overflow-y: auto;
+    padding-right:0.5rem;
+}
+
+#bell{
+    display: flex;
+    position: absolute;
+    top:0.4rem;
+    left:1rem;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1.5rem;
+    z-index: 20;
+    padding:0.5rem;
+}
+
+#bell i{
+    cursor: pointer;
+    transform-origin: 50% 0%;
+    transform: rotate(0deg);
+    color:var(--underline);
+}
+
+#bell i.animating{
+    animation: bell-shake 1s ease-in-out 0s 1 forwards;
+}
+
+@keyframes bell-shake{
+    0%{
+        transform: rotate(0deg);
+    }
+    20%{
+        transform: rotate(-20deg);
+    }
+    40%{
+        transform: rotate(20deg);
+    }
+    60%{
+        transform: rotate(-10deg);
+    }
+    80%{
+        transform: rotate(10deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+}
+
+#bell #notificationNumber{
+    position: absolute;
+    top:0%;
+    left:0%;
+    font-size: 0.7rem;
+    font-weight: 900;
+    width:15px;
+    height:15px;
+    z-index: 1;
+    text-align: center;
+    display:none;
+    cursor: pointer;
+}
+
+#bell #notificationNumber::before{
+    content:'';
+    position: absolute;
+    top:-1px;
+    left:-1px;
+    right:-1px;
+    bottom:-1px;
+    background-color: var(--backgroundColour);
+    border:1px solid var(--primaryColour);
+    z-index: -1;
+    border-radius: 50%;
+}
+
+#clientMessages.shown{
+    transform:translateX(0);
+}

@@ -1,0 +1,47 @@
+<section class="col module">
+    <h2 class="underline">Get and Post Fetch Requests</h2>
+    <div class="row">
+        <section class="col fifty">
+            <h3>Information</h3>
+            <p>Often times you will need to send something to or receive something from a server without having to leave your current web page.</p>
+            <p>This can be achieved using the Fetch API (AJAX requests are also an option too). Once a request is sent to the server a response will be sent back in a Promise based system.</p>
+            <p>Requests can be sent to alter a database, request additional content and a lot more.</p>
+            <p>This module simplifies the syntax for sending requests, you will only need to provide the route and a function that will be run if the request succeeded. If you are sending a POST request then you will also need to send along the content, or body, of the request too.</p>
+            <p>This module handles its errors by using the 'Client Messages' module, if you do not want, or can not use, this module then you will have to edit the error handling of the requests. This code can be found in <code>/js/functions.js</code></p>
+            <p>If you send a POST request it is recommended to limit the user interactions until that request has completed. The 'Waiter' module can be used in this case. If you do open the Waiter then you will need to pass it as a parameter when you send the POST request.</p>
+            <p class="disclaimer">A successful response will have a status of 200 ONLY, any other status is currently handled as an error.</p>
+        </section>
+        <section class="col fifty">
+            <h3>How to use module</h3>
+            <section class="col">
+                <h4>JavaScript</h4>
+                <div class="raised codeCard">
+                    <h5>Sending a GET request</h5>
+<pre><code>
+import {sendGetRequest} from "./functions.js";
+
+sendGetRequest(route, function);
+</code><code class="parameters">
+route: String - The endpoint that this request should be made to
+function: ()=>{} - The function that will be run open successful response  
+</code></pre>
+                    <button class="copyButton secondaryButton">Copy<i class="fas fa-copy"></i></button>
+                </div>
+                <div class="raised codeCard">
+                    <h5>Sending a POST request</h5>
+<pre><code>
+import {sendPostRequest} from "./functions.js";
+
+sendPostRequest(route, content, function, waiter);
+</code><code class="parameters">
+route: String - The endpoint that this request should be made to
+content: JSON - The payload(body) of the request
+function: ()=>{} - The function that will be run open successful response  
+waiter: Waiter(Optional) - The waiter that was opened
+</code></pre>
+                    <button class="copyButton secondaryButton">Copy<i class="fas fa-copy"></i></button>
+                </div>
+            </section>
+        </section>
+    </div>
+</section>

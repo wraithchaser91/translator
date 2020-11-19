@@ -1,0 +1,36 @@
+<section class="col module">
+    <h2 class="underline">Lazy Loading Content</h2>
+    <div class="row">
+        <section class="col fifty">
+            <h3>Information</h3>
+            <p>If you have a lot of content to load into your site or your content is resource heavy, both of which could result in a slow load and a bad user experience, you should consider utilising this module.</p>
+            <p>With this module you can moderate how much content is loaded onto your page at all times, adding in new content when you need to.</p>
+            <div class="col">
+                <h5>This section below will add more content every time you scroll to 95% of the size of the content.</h5>
+                <div id="infiniteScroll">
+
+                </div>
+            </div>
+            <p id="infiniteCounter">The bottom has been reached 0 times,</p>
+        </section>
+        <section class="col fifty">
+            <h3>How to use module</h3>
+            <section class="col">
+                <h4>JavaScript</h4>
+                <div class="raised codeCard">
+                    <h5>Querying scroll %</h5>
+<pre><code>
+import {getPerc} from "./functions.js";
+
+getPerc(element);
+</code><code class="parameters">
+element: HTML(Optional) - The element that you want to find the scroll distance for  
+                                  The default is the document (body)
+</code></pre>
+                    <button class="copyButton secondaryButton">Copy<i class="fas fa-copy"></i></button>
+                </div>
+            </section>
+        </section>
+        </section>
+    </div>
+</section>

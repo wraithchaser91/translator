@@ -1,0 +1,45 @@
+<section class="col module">
+    <h2 class="underline">HTML Element Creation</h2>
+    <div class="row">
+        <section class="col fifty">
+            <h3>Information</h3>
+            <p>Sometimes you will have to create HTML elements on the fly this module makes it super easy. Provide the type of the element and add in any attributes that you need.</p>
+            <div class="col" id="newElementsContainer">
+                <button class="fullWidth" id="newElementsButton">Add New Random element</button>
+            </div>
+            <p>The attributes that you can add are</p>
+            <ul>
+                <li>classList</li>
+                <li>id</li>
+                <li>textContent</li>
+                <li>role</li>
+                <li>type</li>
+                <li>name</li>
+                <li>value</li>
+                <li>type</li>
+                <li>placeholder</li>
+                <li>min</li>
+                <li>max</li>
+                <li>title</li>
+            </ul>
+        </section>
+        <section class="col fifty">
+            <h3>How to use module</h3>
+            <section class="col">
+                <h4>JavaScript</h4>
+                <div class="raised codeCard">
+                    <h5>Creating a new HTML Element</h5>
+<pre><code>
+import {createElement} from "./functions.js";
+
+createElement(tagName, attributes);
+</code><code class="parameters">
+tagName: String - The type of element that will be created
+attributes: JSON(Optional) - An object that holds the attributes for this new element    
+</code></pre>
+                    <button class="copyButton secondaryButton">Copy<i class="fas fa-copy"></i></button>
+                </div>
+            </section>
+        </section>
+    </div>
+</section>

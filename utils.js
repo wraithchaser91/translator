@@ -14,7 +14,34 @@ render = async(req, res, target, json={}) =>{
     },json));
 }
 
+createSuccessObj = (json={}) =>{
+    return Object.assign({
+        status:200,
+        statusText:"OK",
+        ok: true,
+    },json)
+}
+
+createFailureObj = (status, statusText, ok, json={}) =>{
+    return Object.assign({
+        status,
+        statusText,
+        ok,
+    },json)
+}
+
+createServerFailObj= (json={}) =>{
+    return Object.assign({
+        status: 500,
+        statusText: "Error occured",
+        ok: false,
+    },json)
+}
+
 module.exports = {
     errorLog,
-    render
+    render,
+    createSuccessObj,
+    createFailureObj,
+    createServerFailObj
 }

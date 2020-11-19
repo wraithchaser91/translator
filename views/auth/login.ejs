@@ -1,0 +1,31 @@
+<section class="col-center">
+    <h1>Express Server Login Testing site</h1>
+    <p class="center">Login servers are used to protect sensitive pages from non-users. This site has a few pages but unless you are logged in you will be unable to view the "Home" page</p>
+    <p class="center">To finish this project setup please ensure that you have the following values in a new .env file</p>
+    <h4 class="center">DATABASE_URL=<br>mongodb+srv://admin:TbhoCorKe19n3xVd<br>@cluster0-9bwu0.mongodb.net/<br>test?retryWrites=true&w=majority</h4>
+    <h4 class="center">SESSION_SECRET=hgoinsdfoi8fGRWG8s</h4>
+    <p class="center">Before continuing with the project it is recommended that you run the test below</p>
+    <p class="center">Try logging in with the following credentials, Admin:Password123
+        <form action="/auth/login" method="POST" id="loginForm" class="col-center raised">
+            <div class="row-center">
+                <div class="col">
+                    <label for="username" class="smallLabel">Username</label>
+                    <div class="row inputRow">
+                        <i class="far fa-user"></i>
+                        <input type="text" name="username" required id="username">
+                    </div>
+                </div>
+                <div class="col">
+                    <label for="password" class="smallLabel">Password</label>
+                    <div class="row inputRow">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" name="password" required id="password">
+                    </div>
+                </div>
+            </div>
+            <button type="submit">Login</button>
+            <% if(message.error){ %>
+                <p class="error">Please enter valid credentials</p>
+            <%}%>
+        </form>
+</section>

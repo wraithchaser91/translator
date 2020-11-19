@@ -1,6 +1,8 @@
-<header class="row" id="header">
-    <nav>
+<header class="row-end">
+    <%- include("./messages")%>
+    <nav class="row-end">
         <a href="/">Home</a>
+        <a href="/modules">Modules</a>
         <% if(typeof user != "undefined"){ %>
             <form id="logoutForm" action="/auth/logout?_method=DELETE" method="POST"><button type="submit">Logout</button></form>
         <%}else{%>

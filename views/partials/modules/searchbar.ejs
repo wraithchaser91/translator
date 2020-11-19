@@ -1,0 +1,126 @@
+<section class="col module">
+    <h2 class="underline">Searchbar</h2>
+    <div class="row">
+        <section class="col fifty">
+            <h3>Information</h3>
+            <p>The easiest way to filter through large amounts of data is to use a Searchbar. This module only needs a class to look for and a parent for the searchbar to live in.</p>
+            <p>Below are 26 divs each with the class 'searchable' and one element in them, either a p tag or an h5 tag. Once the searchbar has been created, passing in a specific classname on creation, all elements with that classname become searchable within this searchbar.</p>
+            <p>The search is case insensitive and will find parts of words too.</p>
+            <div id="searchbarSection">
+
+            </div>
+            <div class="row" id="searchableSection">
+                <div class="col searchable">
+                    <p>Aardvark</p>
+                </div>
+                <div class="col searchable">
+                    <h5>Baboon</h5>
+                </div>
+                <div class="col searchable">
+                    <p>Camel</p>
+                </div>
+                <div class="col searchable">
+                    <p>Donkey</p>
+                </div>
+                <div class="col searchable">
+                    <p>Elephant</p>
+                </div>
+                <div class="col searchable">
+                    <p>Fox</p>
+                </div>
+                <div class="col searchable">
+                    <p>Giraffe</p>
+                </div>
+                <div class="col searchable">
+                    <p>Horse</p>
+                </div>
+                <div class="col searchable">
+                    <p>Iguana</p>
+                </div>
+                <div class="col searchable">
+                    <p>Jackel</p>
+                </div>
+                <div class="col searchable">
+                    <p>Kangaroo</p>
+                </div>
+                <div class="col searchable">
+                    <p>Llama</p>
+                </div>
+                <div class="col searchable">
+                    <p>Moose</p>
+                </div>
+                <div class="col searchable">
+                    <h5>Newt</h5>
+                </div>
+                <div class="col searchable">
+                    <p>Octopus</p>
+                </div>
+                <div class="col searchable">
+                    <p>Penguin</p>
+                </div>
+                <div class="col searchable">
+                    <h5>Quail</h5>
+                </div>
+                <div class="col searchable">
+                    <p>Rat</p>
+                </div>
+                <div class="col searchable">
+                    <p>Stag</p>
+                </div>
+                <div class="col searchable">
+                    <p>Umbrellabird</p>
+                </div>
+                <div class="col searchable">
+                    <p>Vulture</p>
+                </div>
+                <div class="col searchable">
+                    <p>Wasp</p>
+                </div>
+                <div class="col searchable">
+                    <p>Xerus</p>
+                </div>
+                <div class="col searchable">
+                    <p>Yak</p>
+                </div>
+                <div class="col searchable">
+                    <p>Zebra</p>
+                </div>
+            </div>
+            <p>You may have noticed that a few of the elements never show up in the results; Baboon, Quail and Newt.</p>
+            <p>This is because they are 'h5' elements and I have chosen to exclude them from this searchbar. You can exlude any of the following elements from the searchbar</p>
+            <ul>
+                <li>h1</li>
+                <li>h2</li>
+                <li>h3</li>
+                <li>h4</li>
+                <li>h5</li>
+                <li>h6</li>
+                <li>a</li>
+                <li>p</li>
+                <li>code</li>
+                <li>li</li>
+                <li>span</li>
+            </ul>
+            <p>Anything that is not excluded will be searchable.</p>
+            <p class="disclaimer">If you do not have a fixed height on the parent of the searchable items then this may cause some page shift.</p>
+            <p class="disclaimer">Make sure that you attach the searchbar's element to the DOM.</p>
+        </section>
+        <section class="col fifty">
+            <h3>How to use module</h3>
+            <section class="col">
+                <h4>JavaScript</h4>
+                <div class="raised codeCard">
+                    <h5>Creating a Searchbar</h5>
+<pre><code>
+import {Searchbar} from "./classes.js";
+
+let searchbar = new Searchbar(classToFind, exclusionList);
+</code><code class="parameters">
+classToFind: String - The class that you want to search on
+exclusionList: [String] - The list of elements that should be excluded  
+</code></pre>
+                    <button class="copyButton secondaryButton">Copy<i class="fas fa-copy"></i></button>
+                </div>
+        </section>
+    </div>
+</section>

@@ -1,0 +1,30 @@
+<section class="col module">
+    <h2 class="underline">Device Detection</h2>
+    <div class="row">
+        <section class="col fifty">
+            <h3>Information</h3>
+            <p>Knowing what device an end user is using can come in extremely useful. The currently supported devices that can be detected are Desktop, Tablet and Mobile.</p>
+            <div class="col">
+                <h5 id="deviceString"></h5>
+            </div>
+            <p>Desktop devices are defined as having a width greater than 1024px.</p>
+            <p>Tablet devices are defined as having a width greater than 768px and less than or equal to 1024px</p>
+            <p>Mobile devices are defined as having a width less than or equals to 768px</p>
+        </section>
+        <section class="col fifty">
+            <h3>How to use module</h3>
+            <section class="col">
+                <h4>JavaScript</h4>
+                <div class="raised codeCard">
+                    <h5>Querying the user's device</h5>
+<pre><code>
+import {findDevice} from "./functions.js";  
+
+let device = findDevice();  
+</code></pre>
+                    <button class="copyButton secondaryButton">Copy<i class="fas fa-copy"></i></button>
+                </div>
+            </section>
+        </section>
+    </div>
+</section>

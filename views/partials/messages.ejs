@@ -1,0 +1,19 @@
+<div class="col" id="bell">
+    <i class="fas fa-bell"></i>
+    <p id="notificationNumber"></p>
+    <section class="col raised" id="clientMessages">
+        <h3>Notifications</h3>
+        <div id="messageContainer">
+        </div>
+        <div class="row">
+            <button class="secondaryButton" id="clearMessages">Clear</button>
+            <button class="secondaryButton" id="hideClientMessages">Close</button>
+        </div>
+    </section>
+</div>
+
+<script>
+    let infoMessages = '<%= message.info %>'.split(",");
+    let warningMessages = '<%= message.warning %>'.split(",");
+    let errorMessages = '<%= message.error %>'.split(",");
+</script>
