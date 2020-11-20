@@ -11,10 +11,6 @@ router.get("/", checkAuthentication, async(req, res)=>{
     render(req,res,"index");
 });
 
-router.get("/modules", async(req, res)=>{
-    render(req,res,"modules", {css:["modules"]});
-});
-
 router.post("/newuser", cleanBody, async(req,res)=>{
     let user = new User({
         username:req.body.username

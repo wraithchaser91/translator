@@ -144,6 +144,15 @@ p, a, button{
     font-size: 0.9rem;
 }
 
+p a{
+    color:var(--primaryColour);
+    font-weight: 600;
+}
+
+p a:hover{
+    color:var(--secondaryColour);
+}
+
 h1{
     font-size: 2.5rem;
     color:var(--secondaryColour);
@@ -180,6 +189,12 @@ a{
 
 a:hover,a:focus{
     color:var(--primaryColour);
+}
+
+ul{
+    margin-left:1rem;
+    list-style-type: square;
+    column-count: 2;
 }
 
 .center{
@@ -412,10 +427,6 @@ input, select{
     margin:0;
 }
 
-#loginForm{
-    min-width: 600px;
-}
-
 .disclaimer{
     font-size: 0.7rem;
     color:var(--warningColour);
@@ -471,9 +482,6 @@ code.parameters{
     }
     .row > *{
         margin:1rem;
-    }
-    #loginForm{
-        min-width: 90%;
     }
     form label{
         margin-top:1rem;
