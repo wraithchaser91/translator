@@ -1,0 +1,92 @@
+h1, h2, h3,h4, h5, h6{
+    color:$green;
+    font-family: $roboto-slab;
+
+    @include phone{
+        text-align: center;
+    }
+}
+
+h1{
+    font-size: 3rem;
+    margin-bottom:1rem;
+    @include phone{
+        font-size: 2rem;
+    }
+}
+
+h2{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+h3{
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+h4{
+    font-weight: 400;
+}
+
+a{
+    text-decoration: none;
+    color: $purple;
+    margin: 0 1rem;
+    font-family: $roboto;
+    cursor: pointer;
+    transition: 0.2s color;
+    @include hover{
+        color: $green;
+    }
+    @include focus{
+        color: $green;
+        outline: 3px solid $red;
+        outline-offset: 5px;
+        outline-style: groove;
+    }
+}
+.skip-link{
+    position: fixed;
+    transform: translateY(-200%);
+    transition: 0.3s transform ease-in-out;
+    z-index: 99;
+    &[data-state=hidden]{
+        display: none;
+    }
+    @include focus{
+        transform: translateY(20%);
+    }
+}
+
+p{
+    color:$white;
+    font-family: $roboto;
+    line-height: 1.3rem;
+    max-width:75ch;
+    &+p{
+        margin-top: 1rem;
+    }
+}
+
+.warning{
+    color: $green;
+    margin-bottom:0.5rem;
+    font-size: 0.8rem;
+    &[data-state=hidden]{
+        display: none
+    }
+    &[data-state=shown]{
+        display: block;
+    }
+}
+
+.info{
+    color: $grey;
+    font-size: 0.8rem;
+}
+
+.grey{
+    color: $grey;
+}

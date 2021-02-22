@@ -1,49 +1,31 @@
-<h1>Express Server Login Testing site</h1>
-<div class="row">
+<h1>Express Server Login testing Site</h1>
 
-<section class="col fifty">
-    <h2>Login Test</h2>
-    <p>Login servers are used to protect sensitive pages from non-users. This site has a few pages but unless you are logged in you will be unable to view the "Home" page</p>
-    <p>Before continuing with your own project it is recommended that you run the login test below</p>
-    <p>Try logging in with the following credentials, <code>Admin:Password123</code></p>
-        <form action="/auth/login" method="POST" id="loginForm" class="col-center raised">
-            <div class="row-center">
-                <div class="col">
-                    <label for="username" class="smallLabel">Username</label>
-                    <div class="row inputRow">
-                        <i class="far fa-user"></i>
-                        <input type="text" name="username" required id="username">
-                    </div>
-                </div>
-                <div class="col">
-                    <label for="password" class="smallLabel">Password</label>
-                    <div class="row inputRow">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" name="password" required id="password">
-                    </div>
-                </div>
+<section>
+    <p>Login areas are vital to the successful running of almost all businesses. There will likely be some, if not all, pages that you do not want the general public to have access to.</p>
+    <p>Create a robust permission level structure and ensure that your consumers are only accessing what they are supposed to.</p>
+    <form action="/auth/login" method="POST" class="fw">
+        <h3>Login Test</h3>
+        <div class="row">
+            <div class="row">
+                <label for="username">Username</label>
+                <input type="text" required name="username" id="username">
             </div>
-            <button type="submit">Login</button>
-            <% if(message.error){ %>
-                <p class="error">Please enter valid credentials</p>
-            <%}%>
-        </form>
+            <div class="row">
+                <label for="password">Password</label>
+                <input type="password" required name="password" id="password">
+            </div>
+        </div>
+        <p class="warning" id="formWarning" data-state="hidden">Invalid Credentials</p>
+        <button type="submit">Login</button>
+    </form>
 </section>
-<section class="col fifty">
-    <h2>Modules</h2>
-    <p>This project comes pre-built with lots of ready to use modules, visit <a href="https://modules.onlinedesignstudio.co.uk" target="_blank">this web page</a> to find out how they all work.</p>
-    <h3>Included modules</h3>
-    <ul>
-        <li>Client Messages</li>
-        <li>Waiter Object</li>
-        <li>Switches</li>
-        <li>Popups</li>
-        <li>Searchbar</li>
-        <li>Number Input Functionality</li>
-        <li>HTML Element Creation</li>
-        <li>Get and Post Fetch Requests</li>
-        <li>Device Detection</li>
-        <li>Lazy Loading Content</li>
-    </ul>
-</section>
-</div>
+
+<script type="module">
+    import {alterState} from "/js/functions.js";
+
+    let formWarning = document.querySelector("#formWarning");
+    if(message != ""){
+        formWarning.textContent = message;
+        alterState(formWarning, "shown");
+    }
+</script>

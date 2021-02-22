@@ -1,46 +1,3 @@
-import {addMessage} from "./messages.js";
-import {addInputListeners} from "./numInputFunctions.js";
-
-let findDevice = () =>{
-    let width = window.screen.availWidth;
-    if(width >= 768 && width < 1025) return "tablet";
-    else if(width < 767) return "mobile";
-    return "desktop"
-}
-
-let sendGetFetch = (route, fun) =>{
-    fetch(route, {method: "get",headers: {'Content-Type': 'application/json'}})
-    .then(response =>{
-        if(response.status == 200)return response.json();
-        else throw new Error("Fetch error");
-    })
-    .then(data => {
-        if(data.status == 200)fun(data);
-        else throw new Error(data.statusText);
-    })
-    .catch(error => {
-        console.log(error);
-        addMessage("error", error);
-    });
-}
-
-let sendPostFetch = (route, content, fun, waiter=null) =>{
-    fetch(route, {method: "post", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(content)})
-    .then(response =>{
-        if(waiter)waiter.close();
-        if(response.status == 200) return response.json();
-        else throw new Error("Fetch error");
-    })
-    .then(data => {
-        if(data.status == 200) fun(data);
-        else throw new Error(data.statusText);
-    })
-    .catch(error => {
-        console.log(error);
-        addMessage("error", error);
-    });
-}
-
 /*******HTML creation elements*******/
 let createElement = (type,data={}) =>{
     let ele = document.createElement(type);
@@ -55,30 +12,45 @@ let createElement = (type,data={}) =>{
     if(data.placeholder)ele.placeholder = data.placeholder;
     if(data.min)ele.min = data.min;
     if(data.max)ele.max = data.max;
+    if(data.step)ele.step = data.step;
     if(data.title)ele.title = data.title;
-
-    if(type=="input" && data.classList && data.classList.includes("numFocus"))addInputListeners(ele);
+    if(data.state)ele.dataset.state = data.state;
+    if(data.innerHTML)ele.innerHTML = data.innerHTML;
+    if(data.href)ele.href = data.href;
+    if(data.cols)ele.cols = data.cols;
+    if(data.rows)ele.rows = data.rows;
+    if(data.method)ele.method = data.method;
+    if(data.action)ele.action = data.action;
 
     return ele;
 }
 
-/******Calculates how far a user has scrolled down the screen, useful for any lazy loading that may be needed*******/
-let h = document.documentElement, 
-    b = document.body,
-    st = 'scrollTop',
-    sh = 'scrollHeight';
-let getPerc = (ele=null) =>{
-    if(ele){
-        let maxScroll = ele.scrollHeight - parseInt(window.getComputedStyle(ele).height.replace("px", ""));
-        return ele.scrollTop / maxScroll * 100;
+let getRandomNumber = (min, max, not=-1) =>{
+    let count = 0, maxCount = 10000;
+    while(true){
+        let temp = ~~(Math.random() * (max-min))+min;
+        if(temp != not){
+            return temp;
+        }
+        count++;
+        if(count >= maxCount){
+            return "a";
+        }
     }
-    return (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;
+}
+
+let alterState = (ele, newState) => ele.dataset.state = newState;
+
+let findStringLength = ele =>{
+    let text = ele.textContent;
+    let fontSize = window.getComputedStyle(ele).fontSize.replace("px","");
+
+    return fontSize * text.length;
 }
 
 export{
-    findDevice,
-    sendGetFetch,
-    sendPostFetch,
     createElement,
-    getPerc
+    getRandomNumber,
+    alterState,
+    findStringLength
 }

@@ -1,0 +1,89 @@
+
+
+/***********************Start Popup CSS/***********************/
+.overlay{
+    width:100vw;
+    height:100vh;
+    background-color: #000c;
+    z-index: 99;
+    position: fixed;
+    top:0;
+    left:0;
+    margin:0;
+    /*******STATE CHANGES********/
+    &[data-state=hidden]{
+        display:none;
+    }
+
+    &[data-state=shown]{
+        display:flex;
+    }
+}
+
+.popup{
+    @include flex;
+    position: fixed;
+    top:45%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    min-width:500px;
+    width:auto;
+    max-width:70%;
+    background: $blue;
+    padding:1rem;
+    border-radius: 8px;
+    backface-visibility: hidden;
+    perspective: 1000px;
+    opacity:0;
+    z-index: -1;
+    max-height:55vh;
+    overflow-y: auto;
+    &[data-state=closed]{
+        pointer-events: none;
+        transition: opacity 0.2s;
+    }
+    &[data-state=open]{
+        transition: opacity 0.7s;
+        opacity:1;
+        z-index: 99;
+    }
+    #confirm{
+        margin: 1rem 0 0.3rem;
+    }
+    h3{
+        margin-bottom:1rem;
+    }
+    label{
+        text-align: center;
+    }
+    p{
+        max-width: 60ch;
+        text-align: center;
+    }
+    @include phone{
+        top:10%;
+        left:5%;
+        transform:translate(0,0);
+        width:90%;
+        min-width: 90%;
+        max-height:calc(60vh - 10%);
+        overflow-y: auto;
+        justify-content: flex-start;
+        form input{
+            max-width:80%;
+        }
+    }
+}
+
+#popupContent{
+    @include flex;
+    width:80%;
+    /*******STATE CHANGES********/
+    &[data-state=hidden]{
+        display:none;
+    }
+
+    &[data-state=shown]{
+        display:flex;
+    }
+}

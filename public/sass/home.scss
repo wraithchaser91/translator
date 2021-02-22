@@ -1,0 +1,26 @@
+@import 'setup', 'variables';
+
+h1{
+    font-size: 4rem;
+    @include phone{
+        font-size: 3rem;
+    }
+}
+
+section{
+    @include flex;
+}
+
+a{
+    min-width:180px;
+    text-align: center;
+}
+
+canvas{
+    margin:1rem 0;
+    max-width:700px;
+    width:100%;
+    @include phone{
+        margin:0;
+    }
+}

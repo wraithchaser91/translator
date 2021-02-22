@@ -1,6 +1,4 @@
-if(process.env.NODE_ENV !== "production"){
-    require("dotenv").config();
-}
+require("dotenv").config({path: __dirname + '/.env'});
 
 const express = require("express");
 const app = express();
@@ -14,7 +12,10 @@ app.use(express.static(__dirname + "/public"));
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({limit: "10mb", extended: false}));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: "10mb", extended: false}));
+
+var device = require('express-device');
+app.use(device.capture());
 
 //init passport
 const passport = require("passport");
@@ -34,8 +35,8 @@ app.use(passport.session());
 const mongoose = require("mongoose");
 mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser:true, useUnifiedTopology:true});
 const db = mongoose.connection;
-db.on("error", error=>console.log(error));
-db.on("open", ()=>console.log("Connected to mongoose"));
+db.on("error", error=>console.error(error));
+db.on("open", ()=>{console.log("Connected to mongoose");});
 
 const {cleanBody} = require("./middleware");
 app.use(cleanBody);
@@ -46,8 +47,3 @@ app.use("/", indexRouter);
 app.use("/auth", authRouter);
 
 app.listen(process.env.PORT || 3000);
-
-/*
-DATABASE_URL=mongodb+srv://admin:TbhoCorKe19n3xVd@cluster0-9bwu0.mongodb.net/test?retryWrites=true&w=majority
-SESSION_SECRET=hgoinsdfoi8fGRWG8s
-*/

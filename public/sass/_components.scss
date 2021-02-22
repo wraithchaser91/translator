@@ -1,0 +1,210 @@
+img{
+    border-radius: 8px;
+}
+
+ul{
+    list-style: none;
+}
+
+form{
+    @include flex;
+    min-width: 500px;
+    margin:1rem 0;
+    .row{
+        margin:1rem;
+    }
+    h3{
+        color:$purple;
+        font-size: 2rem;
+    }
+    .info{
+        text-align: center;
+        width: 100%;
+        margin-top:1rem;
+    }
+    @include phone{
+        min-width: 95%;
+        .row, .row-between{
+            justify-content: center;
+        }
+        label{
+            margin-bottom:0.5rem;
+        }
+    }
+}
+
+input, select, textArea{
+    padding:0.3rem;
+    border-radius: 8px;
+    background: $blue;
+    border:1px solid $purple;
+    color:$white;
+    min-width:100px;
+    @include focus{
+        outline:none;
+        border-color: $red;
+    }
+}
+
+select{
+    min-width: 150px;
+}
+
+label{
+    color:$white;
+    font-family: $roboto;
+    margin:auto 1rem;
+}
+
+button, .button, .button2, .button3{
+    display: inline-block;
+    border:1px solid $red;
+    background: none;
+    color:$red;
+    padding:0.5rem 1.2rem;
+    border-radius: 8px;
+    font-family: $roboto;
+    font-size: 1rem;
+    margin:0.5rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: border 0.2s ease-out, color 0.2s ease-out;
+    @include hover{
+        border-color: $green;
+        color:$green;
+    }
+    @include focus{
+        color:$green;
+        border-color: $green;
+        outline: none;
+    }
+    &:disabled{
+        border-color: $grey;
+        color:$grey;
+        cursor: default;
+    }
+}
+
+.button2{
+    border: none;
+    text-transform: initial;
+    margin:0.3rem;
+    padding:0;
+    color:$grey;
+}
+
+.button3{
+    border: 1px solid $white;
+    text-transform: initial;
+    margin:0.3rem;
+    padding:0.2rem 0.4rem;
+    color:$white;
+    font-size: 0.8rem;
+}
+
+.deleteButton{
+    margin:0;
+    min-width:max-content;
+    font-size: 0.8rem;
+    button{
+        border:none;
+    }
+}
+
+#hamburger{
+    display: none;
+    @include phone{
+        display: block;
+        position:fixed;
+        left:5px;
+        top:12px;
+        width:30px;
+        height:36px;
+        z-index: 99;
+        transition: transform ease-out 0.5s;
+        border-radius: 8px;
+        border:1px solid $purple;
+        background-color: $darkBlue;
+        &:focus{
+            outline:none;
+        }
+        &::before, &::after{
+            content:'';
+            position:absolute;
+            top:30%;
+            left:10%;
+            width:80%;
+            height:2px;
+            border-radius: 5px;
+            background-color: $purple;
+            transition: transform ease-out 0.5s, background-color ease-out 0.5s;
+        }
+        &::after{
+            top:60%;
+            width:60%;
+            background-color: $red;
+        }
+        &[data-state=active]{
+            transform: rotate(-180deg);
+            border-color: $red;
+            &::before{
+                transform:rotate(45deg) translate(15%, 180%);
+                background-color:$red;
+            }
+            &::after{
+                transform:rotate(-45deg) translate(10%, -140%);
+                background-color:$red;
+                width:80%;
+            }
+        }
+        &[data-state=inactive]{
+            transform: rotate(0deg);
+            &::before, &::after{
+                transform:rotate(0deg);
+                background-color: $purple;
+            }
+        }
+    }
+}
+
+.card{
+    @include flex;
+    width:400px;
+    margin:1rem;
+    padding:1rem;
+    border-radius:20px;
+    border: 1px solid $purple;
+    background: linear-gradient(145deg, $blue 0%, #0e1019 100%);
+    min-height:220px;
+    h3{
+        
+        text-align: center;
+    }
+    img{
+        width:100%;
+        margin-bottom:1rem;
+    }
+    p{
+        text-align: left;
+        margin-bottom:0.3rem;
+    }
+    .buttonRow{
+        @include flex($direction: row, $y-align: center);
+        margin: auto auto 0;
+        padding:1rem 0 0
+    }
+    .row-between{
+        width:80%;
+        margin-bottom:0.5rem;
+    }
+    .description{
+        margin:1rem 1rem 0;
+    }
+    @include phone{
+        width:98%;
+        margin:1rem 0;
+        h2,h3,p{
+            text-align:center;
+        }
+    }
+}

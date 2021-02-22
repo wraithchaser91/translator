@@ -1,0 +1,39 @@
+.notifications{
+    @include flex($direction: column, $x-align:center, $y-align:flex-start);
+    position:fixed;
+    top:10px;
+    left:50%;
+    z-index: 99;
+    border: 2px solid $grey;
+    background-color: $darkBlue;
+    padding:1rem 1rem 0.5rem;
+    border-radius: 8px;
+    min-width: 300px;
+    max-width: 600px;
+    &[data-state=hidden]{
+        transition: 0.5s ease-out transform;
+        transform:translate(-50%, -150%);
+    }
+    &[data-state=shown]{
+        transition: 0.3s ease-out transform;
+        transform:translate(-50%, 0%);
+    }
+    p{
+        text-align: center;
+        &[data-state=warning]{
+            color:$red;
+        }
+        &[data-state=info]{
+            color:$white;
+        }
+    }
+    .button3{
+        margin:1rem 0.5rem 0.5rem;
+    }
+    
+    @include phone{
+        width:90%;
+        max-width:90%;
+    }
+
+}

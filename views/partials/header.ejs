@@ -1,11 +1,10 @@
-<header class="row-end">
-    <%- include("./messages")%>
-    <nav class="row-end">
-        <a href="/">Home</a>
-        <% if(typeof user != "undefined"){ %>
-            <form id="logoutForm" action="/auth/logout?_method=DELETE" method="POST"><button type="submit">Logout</button></form>
-        <%}else{%>
-            <a href="/auth/login">Login</a>
-        <%}%>
-    </nav>
-</header>
+<a href="/#main" class="skip-link">Skip to main content</a>
+<%if(device == "phone"){%>
+    <button tabIndex="0" id="hamburger" data-state="inactive"></button>
+<%}%>
+<%if(typeof user == "undefined"){%>
+    <%- include("./headers/website.ejs") %>
+<%}else{%>
+    <%- include("./headers/dashboard.ejs")%>
+<%}%>
+<main id="main" tabindex="-1">

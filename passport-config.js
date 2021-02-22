@@ -17,7 +17,7 @@ function init(passport){
                 return done(null, false, {message:warningMessage});
             }
         }catch(e){
-            console.log("ERROR:"+e);
+            console.error("ERROR:"+e);
             return done(e);
         }
     }
@@ -39,7 +39,7 @@ getUserByName = async username =>{
         const user =  await User.findOne({username: username}).exec();
         return user;
     }catch(e){
-        console.log("Failed to find user by name");
+        console.error("Failed to find user by name");
         return null;
     }
 }
@@ -49,7 +49,7 @@ getUserById = async id =>{
         const user =  await User.findById(id);
         return user;
     }catch(e){
-        console.log("Failed to find user by name");
+        console.error("Failed to find user by name");
         return null;
     }
 }
